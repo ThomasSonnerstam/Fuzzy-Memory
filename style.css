@@ -3,6 +3,7 @@
     --powderwhite: #F8F8F8;
     --darkgray: #343636;
     --lightpink: #F85A7C;
+    --scale: scale(1.1);
 }
 
 *,
@@ -17,8 +18,7 @@ body {
     background-color: var(--babyblue);
     font-family: 'Montserrat', sans-serif;
     width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 h1 {
@@ -40,7 +40,40 @@ h3 {
 
 .playboard {
     display: flex;
-    width: 90vw;
-    height: 60vh;
-    margin: 7vh auto;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 70vh;
+    margin: 7vh auto 0 auto;
+    flex-wrap: wrap;
+}
+
+.card-container {
+    position: relative;
+    width: 150px;
+    height: 200px;
+    margin: 1vh 1vw;
+}
+
+img {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    transition: 250ms ease;
+}
+
+img:hover {
+    transform: var(--scale);
+}
+
+.card-blocker {
+    width: 150px;
+    height: 200px;
+    background-color: var(--lightpink);
+    position: absolute;
+    top: 0;
+}
+
+.off {
+    display: none;
 }
