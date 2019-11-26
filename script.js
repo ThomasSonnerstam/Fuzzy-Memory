@@ -35,11 +35,9 @@ const cards = [{
 const image = document.querySelector(".card-container img");
 const containers = document.querySelectorAll(".card-container");
 
-containers.forEach(element => {
-    element.addEventListener("click", () => {
-        const blocker = document.querySelectorAll(".card-blocker");
-        blocker.forEach(block => {
-            block.classList.toggle("off");
-        });
+containers.forEach(container => {
+    container.addEventListener("click", () => {
+        const blocker = container.querySelector(".card-blocker");
+        blocker.classList.toggle("off");
     })
 });
