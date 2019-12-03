@@ -32,7 +32,7 @@ let cards = [{
     }
 ];
 
-
+// Resets the game when clicking on the "New Game" text.
 const newGame = document.querySelector(".menu h3");
 
 newGame.addEventListener("click", () => {
@@ -42,8 +42,6 @@ newGame.addEventListener("click", () => {
         card.classList.remove("flip");
     })
 })
-
-
 
 // Duplicates the cards array
 const dupeCards = [...cards, ...cards]
@@ -114,8 +112,8 @@ const checkMatch = () => {
 
 // Removes the ability to click the cards if they have already matched
 const disableCards = () => {
-    firstCard.removeEventlistener("click", cardFlip);
-    secondCard.removeEventlistener("click", cardFlip);
+    firstCard.removeEventlistener("click", cardFlip());
+    secondCard.removeEventlistener("click", cardFlip());
 
     resetBoard();
 }
