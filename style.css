@@ -31,11 +31,14 @@ h3 {
     width: 33%;
     text-align: center;
     margin-top: 3%;
+    cursor: pointer;
+    border: 2px solid var(--lightpink);
+    border-radius: 8px;
 }
 
 .menu {
     display: flex;
-
+    justify-content: center;
 }
 
 .playboard {

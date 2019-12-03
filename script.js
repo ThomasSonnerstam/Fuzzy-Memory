@@ -33,6 +33,18 @@ let cards = [{
 ];
 
 
+const newGame = document.querySelector(".menu h3");
+
+newGame.addEventListener("click", () => {
+    resetBoard();
+    shuffle();
+    memoryCard.forEach(card => {
+        card.classList.remove("flip");
+    })
+})
+
+
+
 // Duplicates the cards array
 const dupeCards = [...cards, ...cards]
 
