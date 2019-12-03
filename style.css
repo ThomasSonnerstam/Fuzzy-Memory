@@ -67,3 +67,7 @@ img {
 img:hover {
     transform: var(--scale);
 }
+
+.on {
+    opacity: 1;
+}

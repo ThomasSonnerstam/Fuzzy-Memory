@@ -32,11 +32,8 @@ const cards = [{
     }
 ];
 
+// Duplicates the cards array
 const dupeCards = [...cards, ...cards]
-
-const image = document.querySelector(".card-container img");
-const memoryCards = document.querySelectorAll(".card-blocker");
-
 
 // Helper function to prevent XSS injections
 // Creates an HTML element from string
@@ -46,15 +43,16 @@ const stringToHTML = str => {
     return div.firstChild;
 };
 
-// Create ingredient template with a template literal
+// Create card template with a template literal
+const image = document.querySelector(".card-container img");
+
 const createCards = (name, image) => {
     return `<div class="card-container data-name="${name}">
-    <img src="${image}" alt="">
-</div>
-    `;
+                <img src="${image}" alt="">
+            </div>`;
 };
 
-// Render the ingredient element to the DOM
+// Render the card element to the DOM
 const playboardWrapper = document.querySelector(".playboard");
 
 const generateCards = () => {
@@ -65,3 +63,36 @@ const generateCards = () => {
 };
 
 generateCards();
+
+let imageArray = [];
+let containerArray = [];
+
+const memoryCards = document.querySelectorAll(".card-container");
+
+const img = document.querySelector("img");
+
+
+memoryCards.forEach((memoryCard) => {
+    memoryCard.addEventListener("click", () => {
+        const img = memoryCard.querySelector("img");
+        img.classList.add("on");
+        imageArray.push(img)
+        containerArray.push(memoryCard);
+        console.log(imageArray);
+        console.log(containerArray);
+
+        const checkImgArray = () => {
+
+            if (imageArray.length === 2) {
+                imageArray.forEach(imageArr => {
+                    setTimeout(() => {
+                        imageArr.classList.remove("on");
+
+                    }, 700);
+                })
+            }
+        }
+        checkImgArray();
+    })
+
+})
