@@ -70,8 +70,14 @@ generateCards();
 const memoryCard = document.querySelectorAll(".card-container");
 let hasFlippedCard = false;
 let firstCard, secondCard;
+let lockBoard = false;
 
 const cardFlip = (e) => {
+
+    if (lockBoard) return;
+
+    if (e.currentTarget === firstCard) return;
+
     e.currentTarget.classList.add("flip");
 
     if (!hasFlippedCard) {
@@ -82,11 +88,9 @@ const cardFlip = (e) => {
         return;
     }
     // Second click
-    hasFlippedCard = false;
     secondCard = e.currentTarget;
 
     checkMatch();
-
 }
 
 const checkMatch = () => {
@@ -96,19 +100,43 @@ const checkMatch = () => {
     isMatch ? disableCards() : unflipCards();
 }
 
+// Removes the ability to click the cards if they have already matched
 const disableCards = () => {
     firstCard.removeEventlistener("click", cardFlip);
     secondCard.removeEventlistener("click", cardFlip);
+
+    resetBoard();
 }
 
+// Unflips the cards
 const unflipCards = () => {
+
+    lockBoard = true;
+
     setTimeout(() => {
         firstCard.classList.remove("flip");
         secondCard.classList.remove("flip");
 
+        resetBoard();
+
     }, 1500)
 }
 
+// Let's you flip cards when you click on them
 memoryCard.forEach(card => {
     card.addEventListener("click", cardFlip)
 })
+
+const resetBoard = () => {
+    [hasFlippedCard, lockBoard] = [false, false];
+    [firstCard, secondCard] = [null, null];
+}
+
+const shuffle = () => {
+    memoryCard.forEach(card => {
+        let randomOrder = Math.floor(Math.random() * 17);
+        card.style.order = randomOrder;
+    })
+}
+
+shuffle();
