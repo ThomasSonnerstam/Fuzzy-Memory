@@ -32,11 +32,6 @@ let cards = [{
     }
 ];
 
-// START GAME
-
-shuffle(cards);
-
-
 
 // Duplicates the cards array
 const dupeCards = [...cards, ...cards]
@@ -54,8 +49,9 @@ const image = document.querySelector(".card-container img");
 
 const createCards = (name, image) => {
     return `<div class="card-container data-name="${name}">
-                <img src="${image}" alt="">
-            </div>`;
+    <img class="front-face" src="${image}" alt="">
+    <img class="back-face" src="./images/ash.jpg">
+        </div>`;
 };
 
 // Render the card element to the DOM
@@ -70,34 +66,13 @@ const generateCards = () => {
 
 generateCards();
 
-let imageArray = [];
-let containerArray = [];
+// Function to flip a card
+const memoryCard = document.querySelectorAll(".card-container");
 
-const memoryCards = document.querySelectorAll(".card-container");
+const cardFlip = (e) => {
+    e.currentTarget.classList.toggle("flip");
+}
 
-const img = document.querySelector("img");
-
-
-memoryCards.forEach((memoryCard) => {
-    memoryCard.addEventListener("click", () => {
-        const img = memoryCard.querySelector("img");
-        img.classList.add("on");
-        imageArray.push(img)
-        containerArray.push(memoryCard);
-        console.log(imageArray);
-        console.log(containerArray);
-
-        const checkImgArray = () => {
-
-            if (imageArray.length === 2) {
-                imageArray.forEach(imageArr => {
-                    setTimeout(() => {
-                        imageArr.classList.remove("on");
-                    }, 700);
-                })
-            }
-        }
-        checkImgArray();
-    })
-
+memoryCard.forEach(card => {
+    card.addEventListener("click", cardFlip)
 })
