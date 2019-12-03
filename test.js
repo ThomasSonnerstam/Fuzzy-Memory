@@ -48,7 +48,7 @@ const stringToHTML = str => {
 const image = document.querySelector(".card-container img");
 
 const createCards = (name, image) => {
-    return `<div class="card-container data-name="${name}">
+    return `<div class="card-container" data-name="${name}">
     <img class="front-face" src="${image}" alt="">
     <img class="back-face" src="./images/ash.jpg">
         </div>`;
@@ -68,9 +68,39 @@ generateCards();
 
 // Function to flip a card
 const memoryCard = document.querySelectorAll(".card-container");
+let hasFlippedCard = false;
+let firstCard, secondCard;
 
 const cardFlip = (e) => {
-    e.currentTarget.classList.toggle("flip");
+    e.currentTarget.classList.add("flip");
+
+    if (!hasFlippedCard) {
+        // First click
+        hasFlippedCard = true;
+        firstCard = e.currentTarget;
+    } else {
+        // Second click
+        hasFlippedCard = false;
+        secondCard = e.currentTarget;
+
+        // To see if cards match by using the data-set attributes
+        if (firstCard.dataset.name === secondCard.dataset.name) {
+            // It's a match!
+            firstCard.removeEventlistener("click", cardFlip);
+            secondCard.removeEventlistener("click", cardFlip);
+        } else {
+            // Not a match
+            setTimeout(() => {
+                firstCard.classList.remove("flip");
+                secondCard.classList.remove("flip");
+
+            }, 1500)
+        }
+    }
+}
+
+const checkMatch = () => {
+
 }
 
 memoryCard.forEach(card => {
