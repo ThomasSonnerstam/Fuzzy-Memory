@@ -78,29 +78,35 @@ const cardFlip = (e) => {
         // First click
         hasFlippedCard = true;
         firstCard = e.currentTarget;
-    } else {
-        // Second click
-        hasFlippedCard = false;
-        secondCard = e.currentTarget;
 
-        // To see if cards match by using the data-set attributes
-        if (firstCard.dataset.name === secondCard.dataset.name) {
-            // It's a match!
-            firstCard.removeEventlistener("click", cardFlip);
-            secondCard.removeEventlistener("click", cardFlip);
-        } else {
-            // Not a match
-            setTimeout(() => {
-                firstCard.classList.remove("flip");
-                secondCard.classList.remove("flip");
-
-            }, 1500)
-        }
+        return;
     }
+    // Second click
+    hasFlippedCard = false;
+    secondCard = e.currentTarget;
+
+    checkMatch();
+
 }
 
 const checkMatch = () => {
+    // To see if cards match by using the data-set attributes
+    let isMatch = firstCard.dataset.name === secondCard.dataset.name;
 
+    isMatch ? disableCards() : unflipCards();
+}
+
+const disableCards = () => {
+    firstCard.removeEventlistener("click", cardFlip);
+    secondCard.removeEventlistener("click", cardFlip);
+}
+
+const unflipCards = () => {
+    setTimeout(() => {
+        firstCard.classList.remove("flip");
+        secondCard.classList.remove("flip");
+
+    }, 1500)
 }
 
 memoryCard.forEach(card => {
