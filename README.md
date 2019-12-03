@@ -21,3 +21,9 @@ Click on two cards and try to get the identical Pokémon cards.
 If you guess wrong, the cards will automatically flip again.
 Keep trying and guessing until the whole playing board is complete.
 Press "New Game" to unflip all the cards and start over.
+
+## CODE REVIEW
+
+
+
+## TESTERS
