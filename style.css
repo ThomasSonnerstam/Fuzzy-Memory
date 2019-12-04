@@ -29,8 +29,6 @@ h1 {
 h2 {
 	text-align: center;
 	margin-top: 5vh;
-	/* padding: 5px; */
-	/* border: 2px solid var(--lightpink); */
 	border-radius: 8px;
 	background-color: var(--lightpink);
 }

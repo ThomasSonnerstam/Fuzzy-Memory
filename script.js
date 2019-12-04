@@ -111,7 +111,6 @@ const checkMatch = () => {
 
 			h2.textContent = "Congrats! You win :)";
 		}
-		console.log(matchedCards);
 
 		disableCards();
 	} else {
@@ -160,15 +159,11 @@ shuffle();
 const newGame = document.querySelector("h3");
 
 newGame.addEventListener("click", () => {
-	// playboardWrapper.innerHTML = "";
-	// generateCards();
-	shuffle();
 	memoryCard.forEach(card => {
 		card.classList.remove("flip");
 	})
+	shuffle();
 	matchedCards = [];
 	h2.textContent = "";
-	h2.style.padding = "0";
-	h2.style.border = "none";
 
 })
