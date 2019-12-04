@@ -1,80 +1,100 @@
 :root {
-    --babyblue: #2DD6FB;
-    --powderwhite: #F8F8F8;
-    --darkgray: #343636;
-    --lightpink: #F85A7C;
-    --scale: scale(1.1);
+	--babyblue: #2DD6FB;
+	--powderwhite: #F8F8F8;
+	--darkgray: #343636;
+	--lightpink: #F85A7C;
+	--scale: scale(1.1);
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-    background-color: var(--babyblue);
-    font-family: 'Montserrat', sans-serif;
-    width: 100vw;
-    overflow-x: hidden;
+	background-color: var(--babyblue);
+	font-family: 'Montserrat', sans-serif;
+	width: 100vw;
+	overflow-x: hidden;
 }
 
 h1 {
-    color: var(--lightpink);
-    text-align: center;
+	color: var(--lightpink);
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+	margin-top: 5vh;
+	/* padding: 5px; */
+	/* border: 2px solid var(--lightpink); */
+	border-radius: 8px;
+	background-color: var(--lightpink);
 }
 
 h3 {
-    color: var(--darkgray);
-    width: 33%;
-    text-align: center;
-    margin-top: 3%;
-    cursor: pointer;
-    border: 2px solid var(--lightpink);
-    border-radius: 8px;
+	color: var(--darkgray);
+	width: 33%;
+	text-align: center;
+	margin-top: 3%;
+	padding: 5px;
+	cursor: pointer;
+	border: 2px solid black;
+	border-radius: 8px;
+	background-color: var(--lightpink);
+}
+
+h3:hover {
+	transform: var(--scale);
 }
 
 .menu {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
+}
+
+.congratulations {
+	display: flex;
+	justify-content: center;
 }
 
 .playboard {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 70vh;
-    margin: 7vh auto 0 auto;
-    flex-wrap: wrap;
-    perspective: 1000px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 70vh;
+	margin: 7vh auto 0 auto;
+	flex-wrap: wrap;
+	perspective: 1000px;
 }
 
 .card-container {
-    position: relative;
-    width: 150px;
-    height: 200px;
-    margin: 1vh 1vw;
-    transform-style: preserve-3d;
-    transition: transform .5s;
+	position: relative;
+	width: 150px;
+	height: 200px;
+	margin: 1vh 1vw;
+	transform-style: preserve-3d;
+	transition: transform .5s;
 }
 
 .front-face,
 .back-face {
-    width: 150px;
-    height: 200px;
-    object-fit: cover;
-    transition: 250ms ease;
-    position: absolute;
-    backface-visibility: hidden;
+	width: 150px;
+	height: 200px;
+	object-fit: cover;
+	transition: 250ms ease;
+	position: absolute;
+	backface-visibility: hidden;
 }
 
 .front-face {
-    transform: rotateY(180deg);
+	transform: rotateY(180deg);
 }
 
 .card-container.flip {
-    transform: rotateY(180deg);
+	transform: rotateY(180deg);
 }

@@ -69,12 +69,12 @@ generateCards();
 
 // Function to flip a card
 const memoryCard = document.querySelectorAll(".card-container");
+const h2 = document.querySelector("h2");
 let hasFlippedCard = false;
 let firstCard, secondCard;
 let lockBoard = false;
 
 const cardFlip = (e) => {
-
 	if (lockBoard) return;
 	if (e.currentTarget === firstCard) return;
 
@@ -108,20 +108,15 @@ const checkMatch = () => {
 		// If all cards are in the matchedCards array, you will get a notification
 		// that you have won the game.
 		if (matchedCards.length === 16) {
-			youWin();
+
+			h2.textContent = "Congrats! You win :)";
 		}
+		console.log(matchedCards);
 
 		disableCards();
 	} else {
 		unflipCards();
 	}
-}
-
-// Alerts the play that you have won
-const youWin = () => {
-	setTimeout(() => {
-		alert("Congratulations! You win.");
-	}, 1000)
 }
 
 // Removes the ability to click the cards if they have already matched
@@ -166,5 +161,12 @@ const newGame = document.querySelector("h3");
 
 newGame.addEventListener("click", () => {
 	shuffle();
+	memoryCard.forEach(card => {
+		card.classList.remove("flip");
+	})
 	matchedCards = [];
+	h2.textContent = "";
+	h2.style.padding = "0";
+	h2.style.border = "none";
+
 })
