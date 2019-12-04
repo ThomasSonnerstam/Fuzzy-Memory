@@ -160,6 +160,8 @@ shuffle();
 const newGame = document.querySelector("h3");
 
 newGame.addEventListener("click", () => {
+	// playboardWrapper.innerHTML = "";
+	// generateCards();
 	shuffle();
 	memoryCard.forEach(card => {
 		card.classList.remove("flip");
