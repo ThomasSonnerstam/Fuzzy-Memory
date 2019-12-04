@@ -32,6 +32,8 @@ let cards = [{
 	}
 ];
 
+matchedCards = [];
+
 // Duplicates the cards array
 const dupeCards = [...cards, ...cards]
 
@@ -98,10 +100,28 @@ memoryCard.forEach(card => {
 const checkMatch = () => {
 	// To see if cards match by using the data-set attributes
 	if (firstCard.dataset.name === secondCard.dataset.name) {
+
+		// Pushes matching cards to the empty matchedCards array
+		matchedCards.push(firstCard);
+		matchedCards.push(secondCard);
+
+		// If all cards are in the matchedCards array, you will get a notification
+		// that you have won the game.
+		if (matchedCards.length === 16) {
+			youWin();
+		}
+
 		disableCards();
 	} else {
 		unflipCards();
 	}
+}
+
+// Alerts the play that you have won
+const youWin = () => {
+	setTimeout(() => {
+		alert("Congratulations! You win.");
+	}, 1000)
 }
 
 // Removes the ability to click the cards if they have already matched
@@ -124,6 +144,7 @@ const unflipCards = () => {
 		resetBoard();
 
 	}, 1500)
+
 }
 
 const resetBoard = () => {
@@ -139,3 +160,11 @@ const shuffle = () => {
 }
 
 shuffle();
+
+// Press the "New Game" text to restart the game without page reload
+const newGame = document.querySelector("h3");
+
+newGame.addEventListener("click", () => {
+	shuffle();
+	matchedCards = [];
+})
