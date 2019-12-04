@@ -32,21 +32,6 @@ let cards = [{
 	}
 ];
 
-// Resets the game when clicking on the "New Game" text.
-const newGame = document.querySelector(".menu h3");
-
-newGame.addEventListener("click", () => {
-	setTimeout(() => {
-
-		resetBoard();
-		shuffle();
-		memoryCard.forEach(card => {
-			card.classList.remove("flip");
-		})
-
-	}, 1500)
-})
-
 // Duplicates the cards array
 const dupeCards = [...cards, ...cards]
 
@@ -89,7 +74,6 @@ let lockBoard = false;
 const cardFlip = (e) => {
 
 	if (lockBoard) return;
-
 	if (e.currentTarget === firstCard) return;
 
 	e.currentTarget.classList.add("flip");
@@ -98,28 +82,33 @@ const cardFlip = (e) => {
 		// First click
 		hasFlippedCard = true;
 		firstCard = e.currentTarget;
+	} else {
+		// Second click
+		hasFlippedCard = false;
+		secondCard = e.currentTarget;
 
-		return;
+		checkMatch();
 	}
-	// Second click
-	secondCard = e.currentTarget;
-
-	checkMatch();
 }
+
+// Let's you flip cards when you click on them
+memoryCard.forEach(card => {
+	card.addEventListener("click", cardFlip)
+})
 
 const checkMatch = () => {
 	// To see if cards match by using the data-set attributes
-	let isMatch = firstCard.dataset.name === secondCard.dataset.name;
-
-	isMatch ? disableCards() : unflipCards();
+	if (firstCard.dataset.name === secondCard.dataset.name) {
+		disableCards();
+	} else {
+		unflipCards();
+	}
 }
 
 // Removes the ability to click the cards if they have already matched
 const disableCards = () => {
-	firstCard.removeEventlistener("click", cardFlip());
-	secondCard.removeEventlistener("click", cardFlip());
-
-	resetBoard();
+	firstCard.removeEventlistener("click", cardFlip);
+	secondCard.removeEventlistener("click", cardFlip);
 }
 
 // Unflips the cards
@@ -131,15 +120,10 @@ const unflipCards = () => {
 		firstCard.classList.remove("flip");
 		secondCard.classList.remove("flip");
 
-		resetBoard();
+		lockBoard = false;
 
 	}, 1500)
 }
-
-// Let's you flip cards when you click on them
-memoryCard.forEach(card => {
-	card.addEventListener("click", cardFlip)
-})
 
 const resetBoard = () => {
 	[hasFlippedCard, lockBoard] = [false, false];
