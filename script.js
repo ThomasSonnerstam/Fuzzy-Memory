@@ -84,7 +84,6 @@ const cardFlip = (e) => {
 		firstCard = e.currentTarget;
 	} else {
 		// Second click
-		hasFlippedCard = false;
 		secondCard = e.currentTarget;
 
 		checkMatch();
@@ -107,8 +106,10 @@ const checkMatch = () => {
 
 // Removes the ability to click the cards if they have already matched
 const disableCards = () => {
-	firstCard.removeEventlistener("click", cardFlip);
-	secondCard.removeEventlistener("click", cardFlip);
+	firstCard.removeEventListener("click", cardFlip);
+	secondCard.removeEventListener("click", cardFlip);
+
+	resetBoard();
 }
 
 // Unflips the cards
@@ -120,7 +121,7 @@ const unflipCards = () => {
 		firstCard.classList.remove("flip");
 		secondCard.classList.remove("flip");
 
-		lockBoard = false;
+		resetBoard();
 
 	}, 1500)
 }
