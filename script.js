@@ -32,11 +32,20 @@ let cards = [{
 	}
 ];
 
-// START GAME
+// Resets the game when clicking on the "New Game" text.
+const newGame = document.querySelector(".menu h3");
 
-shuffle(cards);
+newGame.addEventListener("click", () => {
+	setTimeout(() => {
 
+		resetBoard();
+		shuffle();
+		memoryCard.forEach(card => {
+			card.classList.remove("flip");
+		})
 
+	}, 1500)
+})
 
 // Duplicates the cards array
 const dupeCards = [...cards, ...cards]
@@ -53,9 +62,10 @@ const stringToHTML = str => {
 const image = document.querySelector(".card-container img");
 
 const createCards = (name, image) => {
-	return `<div class="card-container data-name="${name}">
-                <img src="${image}" alt="">
-            </div>`;
+	return `<div class="card-container" data-name="${name}">
+    <img class="front-face" src="${image}" alt="">
+    <img class="back-face" src="./images/ash.jpg">
+        </div>`;
 };
 
 // Render the card element to the DOM
@@ -70,36 +80,77 @@ const generateCards = () => {
 
 generateCards();
 
-let imageArray = [];
-let containerArray = [];
+// Function to flip a card
+const memoryCard = document.querySelectorAll(".card-container");
+let hasFlippedCard = false;
+let firstCard, secondCard;
+let lockBoard = false;
 
-const memoryCards = document.querySelectorAll(".card-container");
+const cardFlip = (e) => {
 
-const img = document.querySelector("img");
+	if (lockBoard) return;
 
+	if (e.currentTarget === firstCard) return;
 
-memoryCards.forEach((memoryCard) => {
-	memoryCard.addEventListener("click", () => {
-		const img = memoryCard.querySelector("img");
-		img.classList.add("on");
-		imageArray.push(img)
-		containerArray.push(memoryCard);
-		console.log(imageArray);
-		console.log(containerArray);
+	e.currentTarget.classList.add("flip");
 
-		const checkImgArray = () => {
+	if (!hasFlippedCard) {
+		// First click
+		hasFlippedCard = true;
+		firstCard = e.currentTarget;
 
-			if (imageArray.length === 2) {
-				imageArray.forEach(imageArr => {
-					setTimeout(() => {
-						imageArr.classList.remove("on");
-					}, 700);
-				})
-			}
-		}
-		checkImgArray();
-	})
+		return;
+	}
+	// Second click
+	secondCard = e.currentTarget;
 
+	checkMatch();
+}
+
+const checkMatch = () => {
+	// To see if cards match by using the data-set attributes
+	let isMatch = firstCard.dataset.name === secondCard.dataset.name;
+
+	isMatch ? disableCards() : unflipCards();
+}
+
+// Removes the ability to click the cards if they have already matched
+const disableCards = () => {
+	firstCard.removeEventlistener("click", cardFlip());
+	secondCard.removeEventlistener("click", cardFlip());
+
+	resetBoard();
+}
+
+// Unflips the cards
+const unflipCards = () => {
+
+	lockBoard = true;
+
+	setTimeout(() => {
+		firstCard.classList.remove("flip");
+		secondCard.classList.remove("flip");
+
+		resetBoard();
+
+	}, 1500)
+}
+
+// Let's you flip cards when you click on them
+memoryCard.forEach(card => {
+	card.addEventListener("click", cardFlip)
 })
 
-// HEJ
+const resetBoard = () => {
+	[hasFlippedCard, lockBoard] = [false, false];
+	[firstCard, secondCard] = [null, null];
+}
+
+const shuffle = () => {
+	memoryCard.forEach(card => {
+		let randomOrder = Math.floor(Math.random() * 17);
+		card.style.order = randomOrder;
+	})
+}
+
+shuffle();

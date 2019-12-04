@@ -31,11 +31,14 @@ h3 {
     width: 33%;
     text-align: center;
     margin-top: 3%;
+    cursor: pointer;
+    border: 2px solid var(--lightpink);
+    border-radius: 8px;
 }
 
 .menu {
     display: flex;
-
+    justify-content: center;
 }
 
 .playboard {
@@ -46,6 +49,7 @@ h3 {
     height: 70vh;
     margin: 7vh auto 0 auto;
     flex-wrap: wrap;
+    perspective: 1000px;
 }
 
 .card-container {
@@ -53,21 +57,24 @@ h3 {
     width: 150px;
     height: 200px;
     margin: 1vh 1vw;
-    background-color: red;
+    transform-style: preserve-3d;
+    transition: transform .5s;
 }
 
-img {
+.front-face,
+.back-face {
     width: 150px;
     height: 200px;
     object-fit: cover;
     transition: 250ms ease;
-    opacity: 0;
+    position: absolute;
+    backface-visibility: hidden;
 }
 
-img:hover {
-    transform: var(--scale);
+.front-face {
+    transform: rotateY(180deg);
 }
 
-.on {
-    opacity: 1;
+.card-container.flip {
+    transform: rotateY(180deg);
 }
