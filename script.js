@@ -170,4 +170,5 @@ newGame.addEventListener("click", () => {
 	matchedCards = [];
 	h2.textContent = "";
 
+
 })
