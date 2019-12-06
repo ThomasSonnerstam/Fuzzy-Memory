@@ -169,6 +169,4 @@ newGame.addEventListener("click", () => {
 	shuffle();
 	matchedCards = [];
 	h2.textContent = "";
-
-
 })

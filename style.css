@@ -31,12 +31,13 @@ h2 {
 	text-align: center;
 	margin-top: 5vh;
 	border-radius: 8px;
+	width: 20%;
 	background-color: var(--lightpink);
 }
 
 h3 {
 	color: var(--darkgray);
-	width: 33%;
+	width: 20%;
 	text-align: center;
 	margin-top: 3vh;
 	padding: 5px;
