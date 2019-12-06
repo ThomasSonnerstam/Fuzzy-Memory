@@ -1,3 +1,6 @@
+![](https://media.giphy.com/media/vsyKKf1t22nmw/giphy.gif)
+
+
 # Fuzzy Memory
 
 A game of memory in a Pokémon style.
@@ -7,13 +10,14 @@ A game of memory in a Pokémon style.
 - HTML
 - CSS
 - JavaScript
+- Frustration
 
 ## INSTALLATION
 
 - Clone this repository.
 - Open the folder in your code editor of choice.
 - Open ```index.html``` in your browser or via code editor extensions (i.e Live Server within Visual Studio Code).
-- You're now able to browse the web page and play the game. 
+- You're now able to browse the web page and play the game.
 
 ## HOW TO PLAY
 
@@ -24,6 +28,7 @@ Press "New Game" to unflip all the cards and start over.
 
 ## CODE REVIEW
 
-
-
 ## TESTERS
+
+- Oskar Joss
+- Andreas Lindberg
