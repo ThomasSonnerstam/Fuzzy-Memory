@@ -150,7 +150,6 @@ const resetBoard = () => {
 	secondCard = null;
 }
 
-
 // Shuffles the cards by inserting a random number between 1-16
 // to the flexbox property "order"
 const shuffle = () => {
