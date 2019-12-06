@@ -142,8 +142,12 @@ const unflipCards = () => {
 }
 
 const resetBoard = () => {
-	[hasFlippedCard, lockBoard] = [false, false];
-	[firstCard, secondCard] = [null, null];
+	hasFlippedCard = false;
+	lockBoard = false;
+	firstCard = null;
+	secondCard = null;
+	// [hasFlippedCard, lockBoard] = [false, false];
+	// [firstCard, secondCard] = [null, null];
 }
 
 const shuffle = () => {

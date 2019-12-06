@@ -87,12 +87,15 @@ h3:hover {
 	transition: 250ms ease;
 	position: absolute;
 	backface-visibility: hidden;
+	opacity: 0.9;
 }
 
 .front-face {
 	transform: rotateY(180deg);
+	opacity: 1;
 }
 
 .card-container.flip {
 	transform: rotateY(180deg);
+	/* opacity:  */
 }
