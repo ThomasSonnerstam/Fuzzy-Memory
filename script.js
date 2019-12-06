@@ -146,8 +146,6 @@ const resetBoard = () => {
 	lockBoard = false;
 	firstCard = null;
 	secondCard = null;
-	// [hasFlippedCard, lockBoard] = [false, false];
-	// [firstCard, secondCard] = [null, null];
 }
 
 const shuffle = () => {
@@ -164,6 +162,8 @@ const newGame = document.querySelector("h3");
 
 newGame.addEventListener("click", () => {
 	memoryCard.forEach(card => {
+		card.removeEventListener("click", cardFlip);
+		card.addEventListener("click", cardFlip)
 		card.classList.remove("flip");
 	})
 	shuffle();
