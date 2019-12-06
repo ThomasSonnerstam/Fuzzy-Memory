@@ -32,6 +32,7 @@ let cards = [{
 	}
 ];
 
+// Empty array - cards are pushed every time you get a matched pair
 matchedCards = [];
 
 // Duplicates the cards array
@@ -74,6 +75,8 @@ let hasFlippedCard = false;
 let firstCard, secondCard;
 let lockBoard = false;
 
+
+// Function that let's you flip cards
 const cardFlip = (e) => {
 	if (lockBoard) return;
 	if (e.currentTarget === firstCard) return;
@@ -92,23 +95,23 @@ const cardFlip = (e) => {
 	}
 }
 
-// Let's you flip cards when you click on them
+// Event listener that lets you flip cards when you click on them
 memoryCard.forEach(card => {
 	card.addEventListener("click", cardFlip)
 })
 
+// Function to see if the two flipped cards are a match or not
 const checkMatch = () => {
 	// To see if cards match by using the data-set attributes
 	if (firstCard.dataset.name === secondCard.dataset.name) {
 
-		// Pushes matching cards to the empty matchedCards array
+		// Pushes matched cards to the empty matchedCards array
 		matchedCards.push(firstCard);
 		matchedCards.push(secondCard);
 
 		// If all cards are in the matchedCards array, you will get a notification
 		// that you have won the game.
 		if (matchedCards.length === 16) {
-
 			h2.textContent = "Congrats! You win :)";
 		}
 
@@ -148,6 +151,9 @@ const resetBoard = () => {
 	secondCard = null;
 }
 
+
+// Shuffles the cards by inserting a random number between 1-16
+// to the flexbox property "order"
 const shuffle = () => {
 	memoryCard.forEach(card => {
 		let randomOrder = Math.floor(Math.random() * 17);
