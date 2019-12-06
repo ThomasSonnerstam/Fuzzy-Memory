@@ -12,6 +12,11 @@ A game of memory in a Pokémon style.
 - JavaScript
 - Frustration
 
+## PREVIEW
+
+<img src="https://i.imgur.com/v06r3Fk.png" width="100%">
+<img src="https://i.imgur.com/TixTn8r.png" width="100%">
+
 ## INSTALLATION
 
 - Clone this repository.

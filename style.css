@@ -21,6 +21,10 @@ body {
 	overflow-x: hidden;
 }
 
+nav {
+	display: flex;
+}
+
 h1 {
 	color: var(--lightpink);
 	text-align: center;

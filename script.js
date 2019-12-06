@@ -75,7 +75,6 @@ let hasFlippedCard = false;
 let firstCard, secondCard;
 let lockBoard = false;
 
-
 // Function that let's you flip cards
 const cardFlip = (e) => {
 	if (lockBoard) return;
