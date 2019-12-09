@@ -1,4 +1,5 @@
-let cards = [{
+let cards = [
+	{
 		name: "Pikachu",
 		image: "./images/pikachu.png"
 	},
@@ -36,7 +37,7 @@ let cards = [{
 matchedCards = [];
 
 // Duplicates the cards array
-const dupeCards = [...cards, ...cards]
+const dupeCards = [...cards, ...cards];
 
 // Helper function to prevent XSS injections
 // Creates an HTML element from string
@@ -76,7 +77,7 @@ let firstCard, secondCard;
 let lockBoard = false;
 
 // Function that let's you flip cards
-const cardFlip = (e) => {
+const cardFlip = e => {
 	if (lockBoard) return;
 	if (e.currentTarget === firstCard) return;
 
@@ -92,18 +93,17 @@ const cardFlip = (e) => {
 
 		checkMatch();
 	}
-}
+};
 
 // Event listener that lets you flip cards when you click on them
 memoryCard.forEach(card => {
-	card.addEventListener("click", cardFlip)
-})
+	card.addEventListener("click", cardFlip);
+});
 
 // Function to see if the two flipped cards are a match or not
 const checkMatch = () => {
 	// To see if cards match by using the data-set attributes
 	if (firstCard.dataset.name === secondCard.dataset.name) {
-
 		// Pushes matched cards to the empty matchedCards array
 		matchedCards.push(firstCard);
 		matchedCards.push(secondCard);
@@ -118,7 +118,7 @@ const checkMatch = () => {
 	} else {
 		unflipCards();
 	}
-}
+};
 
 // Removes the ability to click the cards if they have already matched
 const disableCards = () => {
@@ -126,11 +126,10 @@ const disableCards = () => {
 	secondCard.removeEventListener("click", cardFlip);
 
 	resetBoard();
-}
+};
 
 // Unflips the cards
 const unflipCards = () => {
-
 	lockBoard = true;
 
 	setTimeout(() => {
@@ -138,17 +137,15 @@ const unflipCards = () => {
 		secondCard.classList.remove("flip");
 
 		resetBoard();
-
-	}, 1500)
-
-}
+	}, 1500);
+};
 
 const resetBoard = () => {
 	hasFlippedCard = false;
 	lockBoard = false;
 	firstCard = null;
 	secondCard = null;
-}
+};
 
 // Shuffles the cards by inserting a random number between 1-16
 // to the flexbox property "order"
@@ -156,8 +153,8 @@ const shuffle = () => {
 	memoryCard.forEach(card => {
 		let randomOrder = Math.floor(Math.random() * 17);
 		card.style.order = randomOrder;
-	})
-}
+	});
+};
 
 shuffle();
 
@@ -167,10 +164,10 @@ const newGame = document.querySelector("h3");
 newGame.addEventListener("click", () => {
 	memoryCard.forEach(card => {
 		card.removeEventListener("click", cardFlip);
-		card.addEventListener("click", cardFlip)
+		card.addEventListener("click", cardFlip);
 		card.classList.remove("flip");
-	})
+	});
 	shuffle();
 	matchedCards = [];
 	h2.textContent = "";
-})
+});
