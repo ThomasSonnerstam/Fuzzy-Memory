@@ -105,3 +105,9 @@ h3:hover {
 .card-container.flip {
 	transform: rotateY(180deg);
 }
+
+@media (max-width: 800px) {
+	h2 {
+		width: 70vw;
+	}
+}
